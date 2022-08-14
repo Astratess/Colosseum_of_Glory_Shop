@@ -334,10 +334,16 @@ h2 {
 
 .container__inner {
     display: flex;
+    justify-content: space-between;
 }
 
-.shop-list__inner {
-    flex: 0 0 70%;
+.container__inner .grid {
+    border-bottom: 2px solid #ffb20d;
+    border-left: 2px solid #ffb20d;
+}
+
+.shop-list {
+    flex: 0 0 65%;
     padding-inline: 20px;
 }
 
@@ -458,6 +464,12 @@ h2 {
     .buy {
         font-size: 12px;
         padding: 17.5px 0;
+    }
+
+    
+    .shop-list {
+        flex: 0 0 100%;
+        padding: 0px;
     }
 
     /* ------------------------------------------------*\
