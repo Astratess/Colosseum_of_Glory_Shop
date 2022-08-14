@@ -56,7 +56,10 @@ h2 {
 \* ------------------------------------------------*/
 
 .underline,
-.gradient {
+.gradient,
+.active-page,
+.promo,
+.locked {
     position: relative;
 }
 
@@ -99,6 +102,51 @@ h2 {
 
 .grid img {
     width: 100%;
+    aspect-ratio: 16/9;
+}
+
+.locked:after {
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    background-color: #000;
+    z-index: 10;
+}
+
+.locked:before {
+    content: '';
+    background-image: url('img/lock.png') ;
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+}
+
+.active-page:after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    border-bottom: 2px solid #ffb20d;
+} 
+
+.promo:after {
+    content: '59.91$';
+    color: darkred;
+    text-decoration: line-through;
+    position: absolute;
+    top: -10px;
+    left: -5px;
+    transform: rotate(-25deg);
 }
 
 /* ------------------------------------------------*\
@@ -311,6 +359,12 @@ h2 {
     color: #fff;
 }
 
+.buy:active {
+    transition: 0s;
+    background-color: #fff;
+    color: rgb(22, 22, 22);
+}
+
 /* ------------------------------------------------*\
                      Footer
 \* ------------------------------------------------*/
@@ -419,13 +473,18 @@ h2 {
 \* ------------------------------------------------*/
 
 @media (max-width:550px) {
+
+    body {
+        padding-top: 250px;
+    }
+
     .header {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 200px;
-        z-index: 10;
+        z-index: 20;
     }
 
     .header__inner {
@@ -450,7 +509,6 @@ h2 {
 
     .hero {
         height: 500px;
-        padding-top: 250px;
     }
 
     .carousel {
