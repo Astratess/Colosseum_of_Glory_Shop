@@ -1,6 +1,7 @@
 const cartMain = document.getElementById('shop-list__inner')
 const currentPrice = document.getElementById('price')
 const order = document.getElementById('order-textarea')
+const clearAll = document.getElementById('clear-all')
 let orderText = ''
 let cartItems1 = []
 let cartPrice = 0
@@ -29,3 +30,7 @@ for (let i = 0; i < cartItems1.length; i++) {
 }
 order.value = orderText + cartPrice.toFixed(2);
 console.log(order.value)
+
+clearAll.addEventListener('click', ()=>{
+	localStorage.removeItem('cartItems')
+})
