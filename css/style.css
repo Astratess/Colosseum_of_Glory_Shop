@@ -23,6 +23,10 @@ body {
     background-color: rgb(22, 22, 22);
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .shell {
     max-width: 1170px;
     width: 90%;
@@ -85,16 +89,29 @@ h2 {
     background-image: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0));
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+.grid img {
+    width: 100%;
+}
+
 /* ------------------------------------------------*\
                      Header
 \* ------------------------------------------------*/
 
-.main__header {
+.header {
     border-bottom: 2px solid #ffb20d;
     margin-bottom: 10vh;
+    background-color: rgb(22, 22, 22);
 }
 
-.main__header .shell{
+.header__inner{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -121,15 +138,36 @@ h2 {
     color: #fff;
 }
 
+.cart-box {
+    position: relative;
+}
+
 .cart {
     fill: #ffb20d;
-    height: 22px;
-    width: 22px;
+    height: 26px;
+    width: 26px;
     transition: 0.35s;
 }
 
 .cart:hover {
     fill: #fff;
+}
+
+.cart-num {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-size: 12px;
+    font-family: 'Changa', sans-serif;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    background-color: #ffb20d;
+    color: rgb(22, 22, 22);
+    border-radius: 50%;
+    top: -2.5px;
+    right: -6.5px;
 }
 
 .logo {
@@ -148,19 +186,49 @@ h2 {
 
 .hero {
     width: 100%;
-    height: 100vh;
+    padding-bottom: 100px;
 }
 
-.hero__carosel {
+.carousel {
     position: relative;
+    border: 2px solid #ffb20d;
+    min-height: 600px;
+    overflow: hidden;
 }
 
-.hero__carosel img {
-    border: 2px solid #ffb20d;
+.image {
     width: 100%;
+    height: 100%;
     position: absolute;
     top:0;
     left: 0;
+}
+
+
+/* ------------------------------------------------*\
+                     Carousel
+\* ------------------------------------------------*/
+
+.image,
+.image-hidden {
+    display: none;
+    transition: 2s;
+}
+
+.active {
+    display: block;
+    transition: 2s
+}
+
+@keyframes fadeInNext{
+    0%{
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0%);
+    }
 }
 
 /* ------------------------------------------------*\
@@ -168,7 +236,7 @@ h2 {
 \* ------------------------------------------------*/
 
 .main {
-    padding-top: 20vh;
+    padding-top: 50px;
 }
 
 .product__boxholder {
@@ -179,6 +247,9 @@ h2 {
 }
 
 .product__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: rgb(22, 22, 22);
     text-align: center;
     border: 2px solid #ffb20d;
@@ -194,6 +265,7 @@ h2 {
     width: 100%;
     aspect-ratio: 16/9;
     margin-bottom: 20px;
+    border-bottom: 2px solid #ffb20d;
 }
 
 .product__box h4 {
@@ -209,6 +281,7 @@ h2 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    background-color: #ffb20d;
 }
 
 .box {
@@ -249,9 +322,103 @@ h2 {
     text-align: center;
 }
 
-@media (max-width:700px) {
+@media (max-width:550px) {
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        z-index: 10;
+    }
+
+    .header__inner {
+        display: block;
+        text-align: center;
+    }
+
+    .nav ul{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px
+    }
+
+    .nav li {
+        justify-self: center;
+        align-self: center;
+    }
+
+    .nav li + li {
+        margin-left: 0;
+    }
+
+    .hero {
+        height: 500px;
+        padding-top: 250px;
+    }
+
+    .carousel {
+        min-height: 200px;
+    }
+
     .product__boxholder {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+    .buy {
+        font-size: 12px;
+        padding: 17.5px 0;
+    }
+}
+
+
+/* ------------------------------------------------*\
+                     Cart
+\* ------------------------------------------------*/
+
+.container__inner {
+    display: flex;
+}
+
+.shop-list__inner {
+    flex: 0 0 70%;
+    padding-inline: 20px;
+}
+
+/* ------------------------------------------------*\
+                     Aside
+\* ------------------------------------------------*/
+
+.aside {
+    flex: 0 0 30%;
+    padding-inline: 20px;
+    padding-top: 50px;
+    border: 2px solid #ffb20d;
+    text-align: center;
+}
+
+.aside__entry {
+    font-size: 24px;
+    margin-bottom: 80px;
+}
+
+/* ------------------------------------------------*\
+                     Form
+\* ------------------------------------------------*/
+
+.label {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.field {
+    width: 100%;
+    height: 30px;
+    border: 2px solid #ffb20d;
+    padding: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.form__row {
+    margin-bottom: 20px;
 }
